@@ -1,0 +1,76 @@
+﻿@using WebBanThucAn.Models
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Extensions
+@using WebBanThucAn.Constant
+
+@{string userName = Context.Session.GetString(SessionKey.NguoiDung.UserName);}
+
+@*<ul class="navbar-nav">
+    @if (userName != null && userName != "")
+    {
+
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="NguoiDung" asp-action="Index">Quản trị</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="MonAn" asp-action="Index">Món ăn</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="DonHang" asp-action="Index">Đơn hàng</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="KhachHang" asp-action="Index">Khách hàng</a>
+        </li>
+    }
+
+</ul>*@
+
+
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" asp-action="Index" asp-controller="Home">
+                <i class="icon-grid menu-icon"></i>
+                <span class="menu-title">Dashboard</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-action="Index" asp-controller="NguoiDung">
+                <i class="ti-user menu-icon"></i>
+                <span class="menu-title">Quản trị</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-action="Index" asp-controller="MonAn">
+                <i class="ti-thought menu-icon"></i>
+                <span class="menu-title">Món ăn</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-action="Index" asp-controller="DonHang">
+                <i class="ti-pencil-alt menu-icon"></i>
+                <span class="menu-title">Đơn hàng</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-action="Index" asp-controller="KhachHang">
+                <i class="ti-drupal menu-icon"></i>
+                <span class="menu-title">Khách hàng</span>
+            </a>
+        </li>
+        @*<li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                <i class="icon-head menu-icon"></i>
+                <span class="menu-title">User Pages</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="auth">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
+                </ul>
+            </div>
+        </li>*@
+
+    </ul>
+</nav>

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<WebBanThucAn.Models.DonHangChiTiet>
+
+@{
+    ViewData["Title"] = "_DonhangChitiet";
+}
+
+<h1>_DonhangChitiet</h1>
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SoLuong)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ThanhTien)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GhiChu)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.DonHang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MonAn)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MonAn.Name)
+            </td>
+            <td>
+                <img src="~/images/monan/@item.MonAn.Hinh" style="width:150px" />
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.SoLuong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThanhTien)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GhiChu)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.DonHang.DonHangID)
+        </td>*@
+
+            @*<td>
+            <a asp-action="Edit" asp-route-id="@item.ChiTietID">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.ChiTietID">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.ChiTietID">Delete</a>
+        </td>*@
+        </tr>
+}
+    </tbody>
+</table>

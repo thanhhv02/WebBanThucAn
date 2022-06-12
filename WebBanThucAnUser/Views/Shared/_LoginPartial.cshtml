@@ -1,0 +1,33 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using WebBanThucAnUser.Models
+
+@inject SignInManager<AppUser> signinManger
+@inject UserManager<AppUser> userManager
+
+@{
+
+    //asp - route - returnUrl = "@Url.Page(" / ", new { area = "" })"
+}
+@if (signinManger.IsSignedIn(User))
+{
+    @*<a asp-area="Identity" asp-page="/Account/Manage/Index" class="user_link" style="text-align:right">
+            Xin chào @userManager.GetUserName(User)
+        </a>*@
+    <a asp-area="Identity" asp-page="/Account/Manage/Index" class="order_online">
+        @userManager.GetUserName(User)
+    </a>
+
+
+    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout"  method="post">
+        <button type="submit" class="nav-link btn btn-link text-white">Logout</button>
+    </form>
+}
+else
+{
+    @*<a asp-area="Identity" asp-page="/Account/Login" class="user_link">
+            <i class="fa fa-user" aria-hidden="true"></i>
+        </a>*@
+    <a asp-area="Identity" asp-page="/Account/Login" class="order_online">
+        Đăng nhập
+    </a>
+}
