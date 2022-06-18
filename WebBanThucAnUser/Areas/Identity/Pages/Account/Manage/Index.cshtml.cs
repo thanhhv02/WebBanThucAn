@@ -14,13 +14,16 @@ namespace WebBanThucAnUser.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private DataContext _context;
 
         public IndexModel(
             UserManager<AppUser> userManager,
-            SignInManager<AppUser> signInManager)
+            SignInManager<AppUser> signInManager,
+            DataContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _context = context;
         }
 
         public string Username { get; set; }
@@ -34,20 +37,30 @@ namespace WebBanThucAnUser.Areas.Identity.Pages.Account.Manage
         public class InputModel
         {
             [Phone]
-            [Display(Name = "Phone number")]
+            [Display(Name = "Số điện thoại")]
             public string PhoneNumber { get; set; }
+            [DataType(DataType.Date)]
+            [Display(Name = "Ngày sinh m/d/y")]
+            public DateTime? DOB { get; set; }
+            [MaxLength(255)]
+            [Display(Name = "Địa chỉ")]
+            public string HomeAddress { get; set; }
         }
 
         private async Task LoadAsync(AppUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            var dayOfBirth = user.DayOfBirth;
+            var homeAddress = user.HomeAddress;
 
             Username = userName;
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                DOB = dayOfBirth,
+                HomeAddress = homeAddress
             };
         }
 
@@ -81,13 +94,17 @@ namespace WebBanThucAnUser.Areas.Identity.Pages.Account.Manage
             if (Input.PhoneNumber != phoneNumber)
             {
                 var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
+                
                 if (!setPhoneResult.Succeeded)
                 {
                     StatusMessage = "Unexpected error when trying to set phone number.";
                     return RedirectToPage();
                 }
             }
-
+            user.HomeAddress = Input.HomeAddress;
+            user.DayOfBirth = Input.DOB;
+            await _userManager.UpdateAsync(user);
+            _context.SaveChanges();
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();

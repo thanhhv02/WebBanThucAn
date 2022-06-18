@@ -19,6 +19,214 @@ namespace WebBanThucAnUser.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("AppUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DayOfBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("HomeAddress")
+                        .HasMaxLength(400)
+                        .HasColumnType("nvarchar(400)");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ParentCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParentCategoryId");
+
+                    b.HasIndex("Slug");
+
+                    b.ToTable("Category");
+                });
+
+            modelBuilder.Entity("DonHang", b =>
+                {
+                    b.Property<int>("DonHangID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Ghichu")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<int>("KhachHangID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("NgayDat")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("Tongtien")
+                        .HasColumnType("float");
+
+                    b.Property<int>("TrangthaiDonhang")
+                        .HasColumnType("int");
+
+                    b.HasKey("DonHangID");
+
+                    b.HasIndex("KhachHangID");
+
+                    b.ToTable("DonHangs");
+                });
+
+            modelBuilder.Entity("DonHangChiTiet", b =>
+                {
+                    b.Property<int>("ChiTietID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("DonHangID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("GhiChu")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<int>("MonAnID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SoLuong")
+                        .HasColumnType("int");
+
+                    b.Property<double>("ThanhTien")
+                        .HasColumnType("float");
+
+                    b.HasKey("ChiTietID");
+
+                    b.HasIndex("DonHangID");
+
+                    b.HasIndex("MonAnID");
+
+                    b.ToTable("DonHangChiTiets");
+                });
+
+            modelBuilder.Entity("KhachHang", b =>
+                {
+                    b.Property<int>("KhachHangID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("FacebookLink")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("Mota")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<DateTime?>("NgaySinh")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Password")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)");
+
+                    b.HasKey("KhachHangID");
+
+                    b.ToTable("KhachHang");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -150,215 +358,7 @@ namespace WebBanThucAnUser.Migrations
                     b.ToTable("UserTokens");
                 });
 
-            modelBuilder.Entity("WebBanThucAnUser.Models.AppUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("DayOfBirth")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("HomeAddress")
-                        .HasMaxLength(400)
-                        .HasColumnType("nvarchar(400)");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("WebBanThucAnUser.Models.Category", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ParentCategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Slug")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ParentCategoryId");
-
-                    b.HasIndex("Slug");
-
-                    b.ToTable("Category");
-                });
-
-            modelBuilder.Entity("WebBanThucAnUser.Models.DonHang", b =>
-                {
-                    b.Property<int>("DonHangID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Ghichu")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<int>("KhachHangID")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("NgayDat")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double>("Tongtien")
-                        .HasColumnType("float");
-
-                    b.Property<int>("TrangthaiDonhang")
-                        .HasColumnType("int");
-
-                    b.HasKey("DonHangID");
-
-                    b.HasIndex("KhachHangID");
-
-                    b.ToTable("DonHangs");
-                });
-
-            modelBuilder.Entity("WebBanThucAnUser.Models.DonHangChiTiet", b =>
-                {
-                    b.Property<int>("ChiTietID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("DonHangID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("GhiChu")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<int>("MonAnID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SoLuong")
-                        .HasColumnType("int");
-
-                    b.Property<double>("ThanhTien")
-                        .HasColumnType("float");
-
-                    b.HasKey("ChiTietID");
-
-                    b.HasIndex("DonHangID");
-
-                    b.HasIndex("MonAnID");
-
-                    b.ToTable("DonHangChiTiets");
-                });
-
-            modelBuilder.Entity("WebBanThucAnUser.Models.KhachHang", b =>
-                {
-                    b.Property<int>("KhachHangID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("FacebookLink")
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<string>("Mota")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<DateTime?>("NgaySinh")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Password")
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("varchar(15)");
-
-                    b.HasKey("KhachHangID");
-
-                    b.ToTable("KhachHang");
-                });
-
-            modelBuilder.Entity("WebBanThucAnUser.Models.MonAn", b =>
+            modelBuilder.Entity("MonAn", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -369,9 +369,6 @@ namespace WebBanThucAnUser.Migrations
                     b.Property<decimal>("Gia")
                         .HasColumnType("money");
 
-                    b.Property<string>("Hinh")
-                        .HasColumnType("nvarchar(250)");
-
                     b.Property<string>("MoTa")
                         .HasColumnType("nvarchar(250)");
 
@@ -379,6 +376,9 @@ namespace WebBanThucAnUser.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
 
                     b.Property<bool>("TrangThai")
                         .HasColumnType("bit");
@@ -389,9 +389,51 @@ namespace WebBanThucAnUser.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MonAns");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Gia = 59000m,
+                            MoTa = "Hambergur",
+                            Name = "Hambergur",
+                            Quantity = 30,
+                            TrangThai = true,
+                            phanLoai = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Gia = 394000m,
+                            MoTa = "Pizza",
+                            Name = "Pizza",
+                            Quantity = 30,
+                            TrangThai = true,
+                            phanLoai = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Gia = 230000m,
+                            MoTa = "Khoai tây chiên",
+                            Name = "Khoai tây chiên",
+                            Quantity = 30,
+                            TrangThai = true,
+                            phanLoai = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Gia = 417000m,
+                            MoTa = "Mỳ ống",
+                            Name = "Mỳ ống",
+                            Quantity = 30,
+                            TrangThai = true,
+                            phanLoai = 1
+                        });
                 });
 
-            modelBuilder.Entity("WebBanThucAnUser.Models.Nguoidung", b =>
+            modelBuilder.Entity("Nguoidung", b =>
                 {
                     b.Property<int>("NguoiDungId")
                         .ValueGeneratedOnAdd()
@@ -431,7 +473,7 @@ namespace WebBanThucAnUser.Migrations
                     b.ToTable("NguoiDungs");
                 });
 
-            modelBuilder.Entity("WebBanThucAnUser.Models.ProductNCategoryProduct", b =>
+            modelBuilder.Entity("ProductNCategoryProduct", b =>
                 {
                     b.Property<int>("ProductID")
                         .HasColumnType("int");
@@ -446,6 +488,65 @@ namespace WebBanThucAnUser.Migrations
                     b.ToTable("ProductNCategoryProducts");
                 });
 
+            modelBuilder.Entity("ProductPhoto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductPhoto");
+                });
+
+            modelBuilder.Entity("Category", b =>
+                {
+                    b.HasOne("Category", "ParentCategory")
+                        .WithMany("CategoryChildren")
+                        .HasForeignKey("ParentCategoryId");
+
+                    b.Navigation("ParentCategory");
+                });
+
+            modelBuilder.Entity("DonHang", b =>
+                {
+                    b.HasOne("KhachHang", "KhachHang")
+                        .WithMany()
+                        .HasForeignKey("KhachHangID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("KhachHang");
+                });
+
+            modelBuilder.Entity("DonHangChiTiet", b =>
+                {
+                    b.HasOne("DonHang", "DonHang")
+                        .WithMany("donHangChiTiets")
+                        .HasForeignKey("DonHangID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MonAn", "MonAn")
+                        .WithMany()
+                        .HasForeignKey("MonAnID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("DonHang");
+
+                    b.Navigation("MonAn");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -457,7 +558,7 @@ namespace WebBanThucAnUser.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("WebBanThucAnUser.Models.AppUser", null)
+                    b.HasOne("AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -466,7 +567,7 @@ namespace WebBanThucAnUser.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("WebBanThucAnUser.Models.AppUser", null)
+                    b.HasOne("AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -481,7 +582,7 @@ namespace WebBanThucAnUser.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebBanThucAnUser.Models.AppUser", null)
+                    b.HasOne("AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -490,61 +591,22 @@ namespace WebBanThucAnUser.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("WebBanThucAnUser.Models.AppUser", null)
+                    b.HasOne("AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("WebBanThucAnUser.Models.Category", b =>
+            modelBuilder.Entity("ProductNCategoryProduct", b =>
                 {
-                    b.HasOne("WebBanThucAnUser.Models.Category", "ParentCategory")
-                        .WithMany("CategoryChildren")
-                        .HasForeignKey("ParentCategoryId");
-
-                    b.Navigation("ParentCategory");
-                });
-
-            modelBuilder.Entity("WebBanThucAnUser.Models.DonHang", b =>
-                {
-                    b.HasOne("WebBanThucAnUser.Models.KhachHang", "KhachHang")
-                        .WithMany()
-                        .HasForeignKey("KhachHangID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("KhachHang");
-                });
-
-            modelBuilder.Entity("WebBanThucAnUser.Models.DonHangChiTiet", b =>
-                {
-                    b.HasOne("WebBanThucAnUser.Models.DonHang", "DonHang")
-                        .WithMany("donHangChiTiets")
-                        .HasForeignKey("DonHangID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WebBanThucAnUser.Models.MonAn", "MonAn")
-                        .WithMany()
-                        .HasForeignKey("MonAnID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("DonHang");
-
-                    b.Navigation("MonAn");
-                });
-
-            modelBuilder.Entity("WebBanThucAnUser.Models.ProductNCategoryProduct", b =>
-                {
-                    b.HasOne("WebBanThucAnUser.Models.Category", "Category")
+                    b.HasOne("Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebBanThucAnUser.Models.MonAn", "Product")
+                    b.HasOne("MonAn", "Product")
                         .WithMany("ProductNCategoryProducts")
                         .HasForeignKey("ProductID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -555,18 +617,31 @@ namespace WebBanThucAnUser.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("WebBanThucAnUser.Models.Category", b =>
+            modelBuilder.Entity("ProductPhoto", b =>
+                {
+                    b.HasOne("MonAn", "product")
+                        .WithMany("Photos")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("product");
+                });
+
+            modelBuilder.Entity("Category", b =>
                 {
                     b.Navigation("CategoryChildren");
                 });
 
-            modelBuilder.Entity("WebBanThucAnUser.Models.DonHang", b =>
+            modelBuilder.Entity("DonHang", b =>
                 {
                     b.Navigation("donHangChiTiets");
                 });
 
-            modelBuilder.Entity("WebBanThucAnUser.Models.MonAn", b =>
+            modelBuilder.Entity("MonAn", b =>
                 {
+                    b.Navigation("Photos");
+
                     b.Navigation("ProductNCategoryProducts");
                 });
 #pragma warning restore 612, 618

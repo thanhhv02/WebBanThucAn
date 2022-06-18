@@ -1,37 +1,28 @@
-﻿@model IEnumerable<WebBanThucAn.Models.KhachHang>
+﻿@model IEnumerable<AppUser>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Khách Hàng</h1>
+<h1>Index</h1>
 
-@*<p>
+<p>
     <a asp-action="Create">Create New</a>
-</p>*@
+</p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.FullName)
+                @Html.DisplayNameFor(model => model.UserName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NgaySinh)
+                @Html.DisplayNameFor(model => model.DayOfBirth)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PhoneNumber)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FacebookLink)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Password)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Mota)
             </th>
             <th></th>
         </tr>
@@ -40,10 +31,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.FullName)
+                @Html.DisplayFor(modelItem => item.UserName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NgaySinh)
+                @Html.DisplayFor(modelItem => item.DayOfBirth)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PhoneNumber)
@@ -52,20 +43,13 @@
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FacebookLink)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mota)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.KhachHangID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.KhachHangID">Details</a> @*|*@
-                @*<a asp-action="Delete" asp-route-id="@item.KhachHangID">Delete</a>*@
+                <a asp-action="Edit" asp-route-id="@item.Id">Chỉnh sửa</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Xem</a>
+                @*<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
             </td>
         </tr>
+
 }
     </tbody>
+
 </table>

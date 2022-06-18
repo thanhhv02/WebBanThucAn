@@ -23,9 +23,15 @@ namespace WebBanThucAn.Controllers
         }
 
         // GET: KhachHangController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
-            return View();
+            var nguoidung = _khachHangSvc.GetKhachHang(id);
+            if (nguoidung == null)
+            {
+                return NotFound();
+            }
+
+            return View(nguoidung);
         }
 
         // GET: KhachHangController/Create
@@ -50,24 +56,34 @@ namespace WebBanThucAn.Controllers
         }
 
         // GET: KhachHangController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            return View();
+            var khachHang = _khachHangSvc.GetKhachHang(id);
+            return View(khachHang);
         }
 
         // POST: KhachHangController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(string id, AppUser khachHang)
         {
+            if (id != khachHang.Id)
+            {
+                return NotFound();
+            }
+
+            //if (ModelState.IsValid)
+            //{
             try
             {
-                return RedirectToAction(nameof(Index));
+                _khachHangSvc.EditKhachHang(id, khachHang);
             }
-            catch
+            catch 
             {
-                return View();
+                
             }
+            return RedirectToAction(nameof(Details), new { id = khachHang.Id });
+            //}
         }
 
         // GET: KhachHangController/Delete/5

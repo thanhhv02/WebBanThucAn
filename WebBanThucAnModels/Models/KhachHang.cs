@@ -5,8 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebBanThucAnUser.Models
-{
+
     public class KhachHang
     {
         [Key]
@@ -43,4 +42,4 @@ namespace WebBanThucAnUser.Models
         [Display(Name ="Mô tả")]
         public string Mota { get; set; }
     }
-}
+

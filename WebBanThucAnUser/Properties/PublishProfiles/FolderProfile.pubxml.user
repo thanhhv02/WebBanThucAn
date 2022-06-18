@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnUser\bin\Release\net5.0\publish\</_PublishTargetUrl>
+    <History>True|2022-06-15T13:41:05.0572516Z;</History>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAUEfGO4KGCUOEXUCOklECDQAAAAACAAAAAAAQZgAAAAEAACAAAAA6ABGCmhIryz6rXY5BOfJJmtbbDD4q3ahODdDXak6+BwAAAAAOgAAAAAIAACAAAAB+pZ4gXKV+DxxczImtJ/2/HaAfgv6YSOT+RYpGgLWEviAAAAD0ZXbxxUdBN3mX+MpTFJn0C8qri3Dt0dWvdxcHrXWyzkAAAAA3Zd3cbABVyRlcYj9Yz99cK1zCs9siTMqVFUh7MpEhhOA/xTdlovGIL5/P4tMm4z/XIwHf1XccxcqAgkNDo3mm</EncryptedPassword>
+  </PropertyGroup>
+</Project>

@@ -3,7 +3,20 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Views\MonAn\Cart.cshtml~RF4f52b3.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\images\MonAn\4fbienbo.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\MonAn\5tcyl4i0.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\MonAn\aca80376312e5cfc.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\MonAn\anuuhyhu.png" />
+  </ItemGroup>
 	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="5.0.17" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="5.0.17" />
 		<PackageReference Include="MailKit" Version="3.2.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.17" />
@@ -18,6 +31,7 @@
 		<PackageReference Include="MimeKit" Version="3.2.0" />
 	</ItemGroup>
 	<ItemGroup>
+	  <Folder Include="mailssave\" />
 	  <Folder Include="wwwroot\js\" />
 	  <Folder Include="wwwroot\lib\bootstrap\" />
 	  <Folder Include="wwwroot\lib\bootstrap\dist\js\" />
@@ -28,6 +42,21 @@
 	  <Folder Include="wwwroot\lib\jquery\dist\" />
 	</ItemGroup>
 	<ItemGroup>
+	  <ProjectReference Include="..\WebBanThucAnModels\WebBanThucAnModels.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Content Update="wwwroot\images\MonAn\5tcyl4i0.png">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	  <Content Update="wwwroot\images\MonAn\aca80376312e5cfc.png">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	  <Content Update="wwwroot\images\MonAn\anuuhyhu.png">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
 	  <Content Update="wwwroot\images\MonAn\b6ddca404e748e2ad765.png">
 	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
 	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
@@ -36,7 +65,23 @@
 	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
 	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 	  </Content>
+	  <Content Update="wwwroot\images\MonAn\cqdpn54i.png">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
 	  <Content Update="wwwroot\images\MonAn\f2.png">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	  <Content Update="wwwroot\images\MonAn\f4.png">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	  <Content Update="wwwroot\images\MonAn\f5.png">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	  <Content Update="wwwroot\images\MonAn\kkhfzlpi.png">
 	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
 	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 	  </Content>

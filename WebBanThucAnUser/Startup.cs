@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using WebBanThucAnUser.Models;
@@ -36,8 +38,12 @@ namespace WebBanThucAnUser
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
-            var mailSetting = Configuration.GetSection("MailSettings");
-            services.Configure<MailSettings>(mailSetting);
+            services.AddOptions(); // Kích hoạt Options
+            var mailsettings = Configuration.GetSection("MailSettings");  // đọc config
+            services.Configure<MailSettings>(mailsettings);                // đăng ký để Inject
+
+            // Đăng ký SendMailService với kiểu Transient, mỗi lần gọi dịch
+            // vụ ISendMailService một đới tượng SendMailService tạo ra (đã inject config)
             services.AddTransient<IEmailSender, SendMailService>();
             services.AddSession(options =>
             {
@@ -72,7 +78,7 @@ namespace WebBanThucAnUser
                 options.User.RequireUniqueEmail = true;  // Email là duy nhất
 
                 // Cấu hình đăng nhập.
-                //options.SignIn.RequireConfirmedEmail = true;            // Cấu hình xác thực địa chỉ email (email phải tồn tại)
+                options.SignIn.RequireConfirmedEmail = true;            // Cấu hình xác thực địa chỉ email (email phải tồn tại)
                 options.SignIn.RequireConfirmedPhoneNumber = false;     // Xác thực số điện thoại
 
             });
@@ -82,7 +88,14 @@ namespace WebBanThucAnUser
             //    options.LoginPath = "/Identity/Account/Login";
             //});
             services.AddTransient<CartService>();
-          
+            services.ConfigureApplicationCookie(options => options.LoginPath = "/dangnhap");
+            services.Configure<SecurityStampValidatorOptions>(options =>
+            {
+                // Trên 30 giây truy cập lại sẽ nạp lại thông tin User (Role)
+                // SecurityStamp trong bảng User đổi -> nạp lại thông tinn Security
+                options.ValidationInterval = TimeSpan.FromSeconds(30);
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -114,7 +127,7 @@ namespace WebBanThucAnUser
                 endpoints.MapRazorPages();
                 
             });
-           
+            
         }
     }
 }

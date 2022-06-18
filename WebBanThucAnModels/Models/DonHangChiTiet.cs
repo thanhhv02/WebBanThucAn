@@ -5,8 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebBanThucAnUser.Models
-{
+
     public class DonHangChiTiet
     {
         [Key]
@@ -27,4 +26,4 @@ namespace WebBanThucAnUser.Models
         public DonHang DonHang { get; set; }
         public MonAn MonAn { get; set; }
     }
-}
+

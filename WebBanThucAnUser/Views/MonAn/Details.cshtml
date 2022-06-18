@@ -1,0 +1,180 @@
+﻿@model MonAn
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<link href="~/css/productdetail/custom.css" rel="stylesheet" />
+<link href="~/css/productdetail/plugins.css" rel="stylesheet" />
+<link href="~/css/productdetail/style.css" rel="stylesheet" />
+<div style="background-color: black;opacity:0.8">
+    <partial name="_Header" />
+</div>
+<br />
+<h1 class="text-center">Chi tiết món ăn</h1>
+<hr />
+<!--<div class="row">
+
+    <div class="col-6 justify-content-center text-center">
+        <h1>Ảnh minh họa</h1>
+        @@if (Model.Photos.Any())
+        {
+            <div class="row d-flex">
+                @@foreach (var photo in Model.Photos)
+                {
+
+                    <div class="flex-wrap">
+                        <img class="w-25" style="width:300px;" src="~/images/MonAn/@@photo.FileName" />
+                    </div>
+
+
+                }
+            </div>
+
+        }
+    </div>
+
+    <div class="col-6">
+        <div class="justify-content-center text-center">
+
+            <h1>@@Model.Name</h1>
+            <div class="mota text-info">
+                Mô tả: @@Model.MoTa
+            </div>
+            <div>
+                <br />
+                Giá: <strong class="text-danger">@@Model.Gia.ToString("n0") đồng</strong>
+                <form class="">
+                    <br />
+                    <input min="1" max="@@Model.Quantity" value="1" type="number" name="quantity"> Còn x @@Model.Quantity-->
+                    @*<a asp-controller="MonAn" asp-action="AddToCart" asp-route-productid="@Model.Id" class="btn btn-danger">Đặt hàng</a>*@
+
+                    <!--<button class="btn btn-danger " style="margin-left:30px" type="submit" asp-action="AddToCart" asp-controller="MonAn" asp-route-productid="@@Model.Id">add to cart</button>
+                </form>
+
+            </div>
+            <div>
+
+            </div>-->
+
+            @*<img class="w-20" src="~/images/MonAn/@Model.Hinh" />*@
+
+        <!--</div>
+    </div>
+</div>-->
+
+
+    <div class="product_details mt-60 mb-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="product-details-tab">
+                        <div id="" class="zoomWrapper justify-content-center d-flex">
+                            @if (Model.Photos.Any())
+                            {
+                                <a href="#">
+                                    <img id="zoom1" src="~/images/MonAn/@Model.Photos.FirstOrDefault().FileName" data-zoom-image="assets/img/product/details-1.jpg" alt="big-1">
+                                </a>
+                            }
+                            else
+                            {
+                                <img src="~/images/nophoto.png" alt="" style="width:360px;height:210px">
+                            }
+                        </div>
+                        <br />
+                        <div class="row justify-content-center d-flex">
+                            @if (Model.Photos.Any())
+                            {
+                                @foreach (var photo in Model.Photos)
+                                {
+
+                                    <div class="col-lg-3 col-md-3 ">
+                                        <a href="#" class="elevatezoom-gallery active" data-update="" data-image="~/images/MonAn/@photo.FileName" data-zoom-image="~/images/MonAn/@photo.FileName">
+                                            <img src="~/images/MonAn/@photo.FileName" alt="zo-th-1" />
+                                        </a>
+                                    </div>
+                                }
+                            }
+                            <ul class="" id="gallery_01">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="product_d_right">
+                        <form method="post">
+
+                            <h1>@Model.Name</h1>
+                            @*<div class=" product_ratting">
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                    <li class="review"><a href="#"> (250 reviews) </a></li>
+                                </ul>
+
+                            </div>*@
+                            <div class="price_box">
+                                <span class="current_price">@Model.Gia.ToString("n0") đồng</span>
+                                @*<span class="old_price">$80.00</span>*@
+
+                            </div>
+                            <div class="product_desc">
+                                <ul>
+                                    <li>In Stock</li>
+                                    @*<li>Free delivery available*</li>
+                                    <li>Sale 30% Off Use Code : 'Drophut'</li>*@
+                                </ul>
+                                <p>Mô tả: @Model.MoTa</p>
+                            </div>
+                            <div class="product_timing">
+                                <div data-countdown="2023/12/15"></div>
+                            </div>
+                            @*<div class="product_variant color">
+                                <h3>Available Options</h3>
+                                <label>color</label>
+                                <ul>
+                                    <li class="color1"><a href="#"></a></li>
+                                    <li class="color2"><a href="#"></a></li>
+                                    <li class="color3"><a href="#"></a></li>
+                                    <li class="color4"><a href="#"></a></li>
+                                </ul>
+                            </div>*@
+                            <div class="product_variant quantity">
+                                <label>quantity</label>
+                                <input min="1" max="@Model.Quantity" value="1" type="number" name="quantity">
+                                <button class="button" type="submit" asp-action="AddToCart" asp-controller="MonAn" asp-route-productid="@Model.Id">add to cart</button>
+
+                            </div>
+                            @*<div class=" product_d_action">
+                                <ul>
+                                    <li><a href="#" title="Add to wishlist">+ Add to Wishlist</a></li>
+                                    <li><a href="#" title="Add to wishlist">+ Compare</a></li>
+                                </ul>
+                            </div>*@
+                            <div class="product_meta">
+                                <span>Category: <a href="#">@Html.DisplayFor(model => model.phanLoai)</a></span>
+                            </div>
+
+                        </form>
+                        <div class="priduct_social">
+                            <ul>
+                                <li><a class="facebook" href="#" title="facebook"><i class="fa fa-facebook"></i> Like</a></li>
+                                <li><a class="twitter" href="#" title="twitter"><i class="fa fa-twitter"></i> tweet</a></li>
+                                <li><a class="pinterest" href="#" title="pinterest"><i class="fa fa-pinterest"></i> save</a></li>
+                                <li><a class="google-plus" href="#" title="google +"><i class="fa fa-google-plus"></i> share</a></li>
+                                <li><a class="linkedin" href="#" title="linkedin"><i class="fa fa-linkedin"></i> linked</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<br />
+<script src="~/css/productdetail/main.js"></script>
+<script src="~/css/productdetail/plugins.js"></script>

@@ -1,4 +1,4 @@
-﻿@model List<WebBanThucAnUser.Models.CartItem>
+﻿@model List<CartItem>
 @{ 
     ViewData["Title"] = "Giỏ hàng";
 }
@@ -19,6 +19,7 @@
             <th>Sản phẩm</th>
             <th>Giá</th>
             <th>Số lượng</th>
+
             <th>Thành tiền</th>
             <th></th>
         </tr>
@@ -26,26 +27,31 @@
         {
             var thanhtien = cartitem.quantity * cartitem.product.Gia;
             total += thanhtien;
-
+            var scrImg = "nophoto.png";
             <tr>
+
                 <td>@(stt++)</td>
                 <td>@cartitem.product.Name</td>
                 <td>@(cartitem.product.Gia.ToString("n0")) đồng</td>
-                <td><input asp-for="@cartitem.quantity" id="@($"quantity-{cartitem.product.Id}")" /></td>
+                <td><input asp-for="@cartitem.quantity" id="@($"quantity-{cartitem.product.Id}")" min="1" max="@cartitem.product.Quantity" value="@cartitem.quantity" type="number" /> Còn x @cartitem.product.Quantity</td>
+
                 <td>@(thanhtien.ToString("n0")) đồng</td>
                 <td>
-                    <button class="btn btn-success updatecartitem"
+                    <button class="btn btn-success updatecartitem" type="submit"
                             data-productid="@cartitem.product.Id">
                         Cập nhật
                     </button>
                     <a asp-route="removecart" asp-route-productid="@cartitem.product.Id"
                        class="btn btn-danger">Xóa</a>
+                    <a asp-controller="MonAn" asp-action="Details" asp-route-id="@cartitem.product.Id"
+                       class="btn btn-info">Đi tới món ăn</a>
+                   
                 </td>
             </tr>
         }
         <tr>
-            <td colspan="4" class="text-right">Tổng tiền</td>
-            <td>@(total.ToString("n0")) đồng</td>
+            <td colspan="4" class="text-right text-danger">Tổng tiền</td>
+            <td class="text-danger">@(total.ToString("n0")) đồng</td>
             <td>
                 <a asp-controller="Product" asp-action="Checkout" class="btn btn-success position-absolute top-100 start-100 translate-middle">Gửi đơn hàng</a>
             </td>

@@ -10,10 +10,10 @@ namespace WebBanThucAn.Services
 {
     public interface IKhachHangSvc
     {
-        List<KhachHang> GetKhachHangAll();
-        KhachHang GetKhachHang(int khachHangID);
-        int AddKhachHang(KhachHang KhachHang);
-        int EditKhachHang(int id, KhachHang KhachHang);
+        List<AppUser> GetKhachHangAll();
+        AppUser GetKhachHang(string khachHangID);
+        string AddKhachHang(AppUser KhachHang);
+        string EditKhachHang(string id, AppUser KhachHang);
         KhachHang Login(ViewWebLogin viewLogin);
     }
     public class KhachHangSvc : IKhachHangSvc
@@ -27,61 +27,60 @@ namespace WebBanThucAn.Services
             _maHoaHelper = maHoaHelper;
         }
 
-        public int AddKhachHang(KhachHang KhachHang)
+        public string AddKhachHang(AppUser KhachHang)
         {
-            int ret = 0;
+            string ret = "";
             try
             {
-                KhachHang.Password = _maHoaHelper.MaHoa(KhachHang.Password);
-                KhachHang.ConfirmPassword = KhachHang.Password;
+                KhachHang.PasswordHash = KhachHang.PasswordHash;
                 _context.Add(KhachHang);
                 _context.SaveChanges();
-                ret = KhachHang.KhachHangID;
+                ret = KhachHang.Id;
             }
             catch
             {
-                ret = 0;
+                ret = "";
             }
             return ret;
         }
 
-        public int EditKhachHang(int id, KhachHang KhachHang)
+        public string EditKhachHang(string id, AppUser KhachHang)
         {
-            int ret = 0;
+            string ret = "";
             try
             {
-                KhachHang _khachHang = null;
-                _khachHang = _context.KhachHangs.Find(id);
-                _khachHang.FullName = KhachHang.FullName;
-                _khachHang.NgaySinh = KhachHang.NgaySinh;
+                AppUser _khachHang = null;
+                _khachHang = _context.Users.Find(id);
+                _khachHang.UserName = KhachHang.UserName;
+                _khachHang.DayOfBirth = KhachHang.DayOfBirth;
                 _khachHang.PhoneNumber = KhachHang.PhoneNumber;
                 _khachHang.Email = KhachHang.Email;
-                if (_khachHang.Password != null)
-                {
-                    KhachHang.Password = _maHoaHelper.MaHoa(KhachHang.Password);
-                    _khachHang.Password = KhachHang.Password;
-                    _khachHang.ConfirmPassword = KhachHang.Password;
-                }
-                _khachHang.Mota = KhachHang.Mota;
+                //if (_khachHang.PasswordHash != null)
+                //{
+                //    KhachHang.PasswordHash = KhachHang.PasswordHash;
+                //    _khachHang.PasswordHash = KhachHang.PasswordHash;
+                  
+                //}
+          
                 _context.Update(_khachHang);
                 _context.SaveChanges();
-                ret = _khachHang.KhachHangID;
+                ret = _khachHang.Id;
             }
             catch
             {
-                ret = 0;
+                ret = "";
             }
             return ret;
         }
 
-        public KhachHang GetKhachHang(int khachHangID)
+        public AppUser GetKhachHang(string khachHangID)
         {
-            return _context.KhachHangs.Find(khachHangID);
+            return _context.Users.Find(khachHangID);
         }
 
-        public List<KhachHang> GetKhachHangAll()
+        public List<AppUser> GetKhachHangAll()
         {
-            return _context.KhachHangs.ToList();
+            return _context.Users.ToList();
         }
 
         public KhachHang Login(ViewWebLogin viewLogin)

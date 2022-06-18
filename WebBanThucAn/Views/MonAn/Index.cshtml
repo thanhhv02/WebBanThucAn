@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebBanThucAn.Models.MonAn>
+﻿@model IEnumerable<MonAn>
 
 @{
     ViewData["Title"] = "Index";
@@ -23,7 +23,10 @@
                 @Html.DisplayNameFor(model => model.phanLoai)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Hinh)
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                Hình
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.TrangThai)
@@ -34,29 +37,40 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Gia)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.phanLoai)
-                </td>
-                <td>
-                    <img src="~/images/MonAn/@item.Hinh" style="width:150px" />
-                    @*@Html.DisplayFor(modelItem => item.Hinh)*@
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TrangThai)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Chỉnh sửa</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Xem</a>
-                    @*<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
-                </td>
-            </tr>
+            var scrImg = "nophoto.png";
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.phanLoai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @*<img src="~/images/MonAn/@@item.Hinh" style="width:150px" />*@
+                @if (item.Photos.Any())
+                {
+                    <img src="~/images/MonAn/@item.Photos.FirstOrDefault().FileName" alt="" style="width:150px" >
+                }
+                else
+                {
+                    <img src="~/images/@scrImg" alt="" style="width:360px;height:210px">
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrangThai)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Chỉnh sửa</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Xem</a>
+                @*<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+            </td>
+        </tr>
         }
     </tbody>
 </table>

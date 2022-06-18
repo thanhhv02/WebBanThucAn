@@ -1,10 +1,11 @@
-﻿@model WebBanThucAn.Models.MonAn
+﻿@model MonAn
 
 @{
     ViewData["Title"] = "Edit";
 }
 
 <h1>Edit</h1>
+
 
 <h4>MonAn</h4>
 <hr />
@@ -24,25 +25,44 @@
                 <span asp-validation-for="Gia" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Quantity" class="control-label"></label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="phanLoai" class="control-label"></label>
-                <select asp-for="phanLoai" class="form-control" asp-items="Html.GetEnumSelectList<WebBanThucAn.Models.MonAn.PhanLoai>()">
+                <select asp-for="phanLoai" class="form-control" asp-items="Html.GetEnumSelectList<MonAn.PhanLoai>()">
                     <option value="0">Select type ...</option>
                 </select>
                 <span asp-validation-for="phanLoai" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <img src="~/images/MonAn/@Model.Hinh" style="height:100px" />
-            </div>
-            <div class="form-group">
-                <label asp-for="ImageFile" class="control-label"></label>
-                <input asp-for="ImageFile" class="form-control" type="file" />
-                <span asp-validation-for="ImageFile" class="text-danger"></span>
-            </div>
-            <div class="form-group" style="display:none;">
-                <label asp-for="Hinh" class="control-label"></label>
-                <input asp-for="Hinh" class="form-control" />
-                <span asp-validation-for="Hinh" class="text-danger"></span>
-            </div>
+            <div class="border border-primary">
+                <input class="collapse"
+                       type="file"
+                       id="selectfileupload"
+                       onchange="AutoUploadPhoto()" />
+
+                <span class="btn btn-primary" onclick="ClickButtoUpload()">Upload Hình ảnh</span>
+
+               
+                    <div id="box-photo-upload" class="d-flex flex-wrap photo-upload" data-id="@Model.Id">
+                    </div>
+                    
+                </div>
+
+            @*<div class="form-group">
+                    <img src="~/images/MonAn/@Model.Hinh" style="height:100px" />
+                </div>*@
+            @*<div class="form-group">
+                    <label asp-for="ImageFile" class="control-label"></label>
+                    <input asp-for="ImageFile" class="form-control" type="file" />
+                    <span asp-validation-for="ImageFile" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="display:none;">
+                    <label asp-for="Hinh" class="control-label"></label>
+                    <input asp-for="Hinh" class="form-control" />
+                    <span asp-validation-for="Hinh" class="text-danger"></span>
+                </div>*@
             <div class="form-group">
                 <label asp-for="MoTa" class="control-label"></label>
                 <input asp-for="MoTa" class="form-control" />
@@ -67,4 +87,99 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+    <script>
+        function AutoUploadPhoto()
+        {
+                var formData = new FormData();
+                var id = $("#box-photo-upload").data("id");
+                formData.append("id", id);
+                var sofile = document.getElementById("selectfileupload").files.length;
+                if (sofile == 0) return;
+                var fileData = document.getElementById("selectfileupload").files[0];
+                formData.append("FileUpload", fileData)
+                var urlUpload = "@Url.Action("UploadPhotoApi")";
+            $.ajax({
+                data: formData,
+                cache: false,
+                url: urlUpload,
+                type: "POST",
+                contentType: false,
+                processData: false,
+                success: function(data)
+                {
+                    // ... xu ly du lieu lay duoc
+                    LoadPhotos();
+                }
+            });
+
+        }
+        function ClickButtoUpload()
+        {
+            $("#selectfileupload").click();
+        }
+        function setClickDeletePhoto()
+        {
+            $("#box-photo-upload .photodetail span").click(function () {
+                    if (confirm("Có chắc chắn xóa ảnh?") != true) return;
+                    var spanButton = $(this);
+                    var id = spanButton.data("id");
+                    var formData = new FormData();
+                    formData.append("id", id);
+                    var urlDeletePhoto = "@Url.Action("DeletePhoto")";
+            $.ajax({
+                data: formData,
+                cache: false,
+                url: urlDeletePhoto,
+                type: "POST",
+                contentType: false,
+                processData: false,
+                success: function(data)
+                {
+                    // ... xu ly du lieu lay duoc
+                    LoadPhotos();
+
+                }
+            });
+
+            });
+        }
+        function LoadPhotos()
+        {
+            var box = $("#box-photo-upload");
+            var ProductID = box.data("id");
+            box.empty();
+            var formData = new FormData();
+            formData.append("id", ProductID);
+            var urlListPhoto = "@Url.Action("ListPhotos")";
+            $.ajax({
+                data: formData,
+                cache: false,
+                url: urlListPhoto,
+                type: "POST",
+                contentType: false,
+                processData: false,
+                success: function(data)
+                {
+                    // ... xu ly du lieu lay duoc
+                    data.photos.forEach(function(item) {
+                        // console.log(item.id);
+                        // console.log(item.path);
+                        var e = $(
+                            '<div class="photodetail w-25 p-1">'
+                                + '<img class="w-100" src="'+ item.path +'" />'
+                                + '<span class="btn btn-danger" data-id="'+ item.id +'">Delete</span></div>');
+                            box.append(e);
+                    });
+                    setClickDeletePhoto();
+                }
+            });
+
+            // console.log(ProductID);
+        }
+        $(document).ready(function() {
+            LoadPhotos();
+        });
+    </script>
 }

@@ -6,8 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebBanThucAnUser.Models
-{
+
     public class AppUser:IdentityUser
     {
         [Column(TypeName ="nvarchar")]
@@ -16,4 +15,4 @@ namespace WebBanThucAnUser.Models
         [DataType(DataType.Date)]
         public DateTime?  DayOfBirth { get; set; }
     }
-}
+

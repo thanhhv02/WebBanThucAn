@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using WebBanThucAnUser.Models;
 using WebBanThucAnUser.Services;
 
@@ -25,7 +23,7 @@ namespace WebBanThucAnUser.Controllers
         // GET: MonAn
         public async Task<IActionResult> Index()
         {
-            return View(await _context.MonAns.Where(x=>x.TrangThai == true).ToListAsync());
+            return View(await _context.MonAns.Where(x => x.TrangThai == true).Include(p => p.Photos).ToListAsync());
         }
 
         // GET: MonAn/Details/5
@@ -36,7 +34,7 @@ namespace WebBanThucAnUser.Controllers
                 return NotFound();
             }
 
-            var monAn = await _context.MonAns
+            var monAn = await _context.MonAns.Where(x=>x.TrangThai == true).Include(p=>p.Photos)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (monAn == null)
             {
@@ -52,11 +50,56 @@ namespace WebBanThucAnUser.Controllers
         }
         /// Thêm sản phẩm vào cart
         [Route("addcart/{productid:int}")]
-        public IActionResult AddToCart([FromRoute] int productid)
+        public IActionResult AddToCart([FromRoute] int productid, int quantity)
         {
-
+            if (quantity <= 0)
+            {
+                quantity = 1;
+            }
+            
             var product = _context.MonAns
                             .Where(p => p.Id == productid && p.TrangThai == true)
+                           
+                            .FirstOrDefault();
+            if (product == null)
+                return NotFound("Không có sản phẩm");
+            if (quantity > product.Quantity)
+            {
+                quantity = product.Quantity;
+            }
+
+                // Xử lý đưa vào Cart ...
+                var cart = _cartService.GetCartItems();
+            var cartitem = cart.Find(p => p.product.Id == productid);
+            if (cartitem != null)
+            {
+                
+                cartitem.quantity += quantity;
+                if (cartitem.quantity > cartitem.product.Quantity)
+                {
+                    cartitem.quantity = cartitem.product.Quantity;
+                }
+            }
+            else
+            {
+                //  Thêm mới
+                cart.Add(new CartItem() { quantity = quantity, product = product });
+            }
+            //product.Quantity -= quantity;
+            //_context.Update(product);
+            //_context.SaveChanges();
+            // Lưu cart vào Session
+            _cartService.SaveCartSession(cart);
+            // Chuyển đến trang hiện thị Cart
+            return RedirectToAction(nameof(Cart));
+        }
+        [HttpPost]
+        public IActionResult AddToCartPost([FromForm] int productid)
+        {
+            
+            var product = _context.MonAns
+                            .Where(p => p.Id == productid && p.TrangThai == true)
+                            
                             .FirstOrDefault();
             if (product == null)
                 return NotFound("Không có sản phẩm");
@@ -68,17 +111,23 @@ namespace WebBanThucAnUser.Controllers
             {
                 // Đã tồn tại, tăng thêm 1
                 cartitem.quantity++;
+                if (cartitem.quantity > cartitem.product.Quantity)
+                {
+                    cartitem.quantity = cartitem.product.Quantity;
+                }
             }
             else
             {
                 //  Thêm mới
                 cart.Add(new CartItem() { quantity = 1, product = product });
             }
-
+            //product.Quantity -= 1;
+            //_context.Update(product);
+            //_context.SaveChanges();
             // Lưu cart vào Session
             _cartService.SaveCartSession(cart);
             // Chuyển đến trang hiện thị Cart
-            return RedirectToAction(nameof(Cart));
+            return Ok();
         }
         /// xóa item trong cart
         [Route("/removecart/{productid:int}", Name = "removecart")]
@@ -91,7 +140,9 @@ namespace WebBanThucAnUser.Controllers
                 // Đã tồn tại, tăng thêm 1
                 cart.Remove(cartitem);
             }
-
+            //cartitem.product.Quantity += cartitem.quantity;
+            //_context.Update(cartitem.product);
+            //_context.SaveChanges();
             _cartService.SaveCartSession(cart);
             // Xử lý xóa một mục của Cart ...
             return RedirectToAction(nameof(Cart));
@@ -102,17 +153,26 @@ namespace WebBanThucAnUser.Controllers
         [HttpPost]
         public IActionResult UpdateCart([FromForm] int productid, [FromForm] int quantity)
         {
+
             // Cập nhật Cart thay đổi số lượng quantity ...
             var cart = _cartService.GetCartItems();
             var cartitem = cart.Find(p => p.product.Id == productid);
+            if(quantity > cartitem.product.Quantity)
+            {
+                quantity = cartitem.product.Quantity;
+            }
             if (cartitem != null)
             {
                 // Đã tồn tại, tăng thêm 1
                 cartitem.quantity = quantity;
             }
+            //MonAn monAn = new MonAn();
+            //monAn.Quantity -= quantity;
+            //_context.Update(monAn);
+            //_context.SaveChanges();
             _cartService.SaveCartSession(cart);
             // Trả về mã thành công (không có nội dung gì - chỉ để Ajax gọi)
-            return RedirectToAction(nameof(Cart));
+            return RedirectToAction(nameof(Cart)); 
         }
 
 
@@ -135,6 +195,24 @@ namespace WebBanThucAnUser.Controllers
             _cartService.ClearCart();
             return View();
         }
-        
+        [HttpPost]
+        public IActionResult Search(string search)
+        {
+            if (!string.IsNullOrWhiteSpace(search) && string.IsNullOrEmpty(search))
+                
+            return View(_context.MonAns
+                            .Where(p => p.Name.ToLower().Contains(search.ToLower()) && p.TrangThai == true)
+                            
+                            .ToList());
+
+            else
+            {
+                MonAn monAn = new MonAn();
+                monAn = null;
+                return View(monAn);
+            }
+                
+        }
+
     }
 }

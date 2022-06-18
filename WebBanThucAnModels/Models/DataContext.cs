@@ -4,10 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebBanThucAn.Models;
 
-namespace WebBanThucAnUser.Models
-{
+
     public class DataContext : IdentityDbContext<AppUser>
     {
         public DataContext(DbContextOptions<DataContext> options):base(options)
@@ -34,6 +32,52 @@ namespace WebBanThucAnUser.Models
             optionsBuilder.Entity<ProductNCategoryProduct>(entity => {
                 entity.HasKey(p => new {p.ProductID,p.CategoryID });
             });
+            optionsBuilder.Entity<MonAn>().HasData(
+                new MonAn()
+                {
+                    Id = 1,
+                    Name = "Hambergur",
+                    Gia = 59000,
+                    Quantity = 30,
+                    phanLoai = MonAn.PhanLoai.DoAnNhanh,
+                    //Hinh = "f2.png",
+                    MoTa = "Hambergur",
+                    TrangThai = true,
+                },
+                new MonAn()
+                {
+                    Id = 2,
+                    Name = "Pizza",
+                    Gia = 394000,
+                    Quantity = 30,
+                    phanLoai = MonAn.PhanLoai.DoAnNhanh,
+                    //Hinh = "f3.png",
+                    MoTa = "Pizza",
+                    TrangThai = true,
+                },
+                new MonAn()
+                {
+                    Id = 3,
+                    Name = "Khoai tây chiên",
+                    Gia = 230000,
+                    Quantity = 30,
+                    phanLoai = MonAn.PhanLoai.DoAnNhanh,
+                    //Hinh = "f5.png",
+                    MoTa = "Khoai tây chiên",
+                    TrangThai = true,
+                },
+                new MonAn()
+                {
+                    Id = 4,
+                    Name = "Mỳ ống",
+                    Gia = 417000,
+                    Quantity = 30,
+                    phanLoai = MonAn.PhanLoai.DoAnNhanh,
+                    //Hinh = "f4.png",
+                    MoTa = "Mỳ ống",
+                    TrangThai = true,
+                }
+                );
         }
         public DbSet<MonAn> MonAns { get; set; }
         public DbSet<Nguoidung> NguoiDungs { get; set; }
@@ -43,6 +87,7 @@ namespace WebBanThucAnUser.Models
         public DbSet<KhachHang> KhachHangs { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<ProductNCategoryProduct> ProductNCategoryProducts { get; set; }
+        public DbSet<ProductPhoto> ProductPhotos { get; set; }
 
     }
-}
+

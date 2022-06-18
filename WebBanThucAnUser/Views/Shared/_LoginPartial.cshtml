@@ -13,13 +13,13 @@
     @*<a asp-area="Identity" asp-page="/Account/Manage/Index" class="user_link" style="text-align:right">
             Xin chào @userManager.GetUserName(User)
         </a>*@
-    <a asp-area="Identity" asp-page="/Account/Manage/Index" class="order_online">
+    <a asp-area="Identity" asp-page="/Account/Manage/Index" class="order_online" style="margin-left:30px">
         @userManager.GetUserName(User)
     </a>
 
 
     <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout"  method="post">
-        <button type="submit" class="nav-link btn btn-link text-white">Logout</button>
+        <button type="submit" class="nav-link btn btn-link text-white btn btn-danger border-10">Logout</button>
     </form>
 }
 else
@@ -27,7 +27,7 @@ else
     @*<a asp-area="Identity" asp-page="/Account/Login" class="user_link">
             <i class="fa fa-user" aria-hidden="true"></i>
         </a>*@
-    <a asp-area="Identity" asp-page="/Account/Login" class="order_online">
+    <a asp-area="Identity" asp-page="/Account/Login" class="order_online" style="margin-left:30px">
         Đăng nhập
     </a>
 }

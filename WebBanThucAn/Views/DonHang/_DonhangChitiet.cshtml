@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebBanThucAn.Models.DonHangChiTiet>
+﻿@model IEnumerable<DonHangChiTiet>
 
 @{
     ViewData["Title"] = "_DonhangChitiet";
@@ -36,9 +36,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.MonAn.Name)
             </td>
-            <td>
+            @*<td>
                 <img src="~/images/monan/@item.MonAn.Hinh" style="width:150px" />
-            </td>
+            </td>*@
 
             <td>
                 @Html.DisplayFor(modelItem => item.SoLuong)

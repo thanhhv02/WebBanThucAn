@@ -1,4 +1,4 @@
-﻿@model WebBanThucAn.Models.MonAn
+﻿@model MonAn
 
 @{
     ViewData["Title"] = "Details";
@@ -23,18 +23,24 @@
             @Html.DisplayFor(model => model.Gia)
         </dd>
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.phanLoai)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.phanLoai)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Hinh)
+        <!--<dt class="col-sm-2">
+            @@Html.DisplayNameFor(model => model.Hinh)
         </dt>
         <dd class="col-sm-10">
-            <img src="~/images/MonAn/@Model.Hinh" style="width:250px" />
+            <img src="~/images/MonAn/@@Model.Hinh" style="width:250px" />-->
             @*@Html.DisplayFor(model => model.Hinh)*@
-        </dd>
+        <!--</dd>-->
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.MoTa)
         </dt>

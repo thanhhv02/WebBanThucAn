@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using WebBanThucAnUser.Controllers;
 using WebBanThucAnUser.Models;
 
 namespace WebBanThucAnUser.Areas.Identity.Pages.Account
@@ -24,7 +25,8 @@ namespace WebBanThucAnUser.Areas.Identity.Pages.Account
 
         [TempData]
         public string StatusMessage { get; set; }
-
+        
+       
         public async Task<IActionResult> OnGetAsync(string userId, string code)
         {
             if (userId == null || code == null)

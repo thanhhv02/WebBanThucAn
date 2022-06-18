@@ -5,8 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebBanThucAnUser.Models
-{
+
     [Table("Category")]
     public class Category
     {
@@ -99,4 +98,4 @@ namespace WebBanThucAnUser.Models
         }
 
     }
-}
+

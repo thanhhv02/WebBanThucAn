@@ -5,8 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebBanThucAnUser.Models
-{
+
     public enum TrangThaiDonHang
     {
         [Display(Name ="Mới đặt")]
@@ -46,4 +45,4 @@ namespace WebBanThucAnUser.Models
         public KhachHang KhachHang { get; set; }
         public List<DonHangChiTiet> donHangChiTiets { get; set; }
     }
-}
+

@@ -4,8 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebBanThucAnUser.Models
-{
+
     public class ProductNCategoryProduct
     {
         public int ProductID { set; get; }
@@ -18,4 +17,4 @@ namespace WebBanThucAnUser.Models
         [ForeignKey("CategoryID")]
         public Category Category { set; get; }
     }
-}
+

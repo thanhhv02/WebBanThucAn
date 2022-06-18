@@ -70,6 +70,7 @@ public class SendMailService : IEmailSender
         try
         {
             smtp.Connect(mailSettings.Host, mailSettings.Port, SecureSocketOptions.StartTls);
+            smtp.AuthenticationMechanisms.Remove("XOAUTH2");
             smtp.Authenticate(mailSettings.Mail, mailSettings.Password);
             await smtp.SendAsync(message);
         }

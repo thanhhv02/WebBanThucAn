@@ -358,7 +358,6 @@ D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnUser\obj\Debug\ne
 D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnUser\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\_Layout.cshtml.g.cs
 D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnUser\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\_StatusMessage.cshtml.g.cs
 D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnUser\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml.g.cs
-D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnUser\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Register.cshtml.g.cs
 D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnUser\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\RegisterConfirmation.cshtml.g.cs
 D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnUser\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\ResendEmailConfirmation.cshtml.g.cs
 D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnUser\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\ResetPassword.cshtml.g.cs
@@ -377,3 +376,14 @@ D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnUser\obj\Debug\ne
 D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnUser\obj\Debug\net5.0\Razor\Views\Shared\_CartPartial.cshtml.g.cs
 D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnUser\obj\Debug\net5.0\Razor\Views\MonAn\Cart.cshtml.g.cs
 D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnUser\obj\Debug\net5.0\Razor\Views\MonAn\CheckOut.cshtml.g.cs
+D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnUser\bin\Debug\net5.0\Microsoft.AspNetCore.Http.Features.dll
+D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnUser\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnUser\bin\Debug\net5.0\System.IO.Pipelines.dll
+D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnUser\bin\Debug\net5.0\WebBanThucAnModels.dll
+D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnUser\bin\Debug\net5.0\WebBanThucAnModels.pdb
+D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnUser\obj\Debug\net5.0\Razor\Views\MonAn\Details.cshtml.g.cs
+D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnUser\obj\Debug\net5.0\Razor\Views\MonAn\Search.cshtml.g.cs
+D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnUser\obj\Debug\net5.0\Razor\Views\Shared\Components\MessagePage\Default.cshtml.g.cs
+D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnUser\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.Facebook.dll
+D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnUser\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.Google.dll
+D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnUser\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Register.cshtml.g.cs

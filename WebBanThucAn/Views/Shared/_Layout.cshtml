@@ -74,7 +74,8 @@
     <link rel="stylesheet" href="~/css/vertical-layout-light/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="~/images/favicon.png" />
-
+    <link href="~/css/photodetails.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
     <link href="~/vendors/mdi/css/materialdesignicons.min.css" rel="stylesheet" />
 </head>
 <body>
@@ -294,7 +295,7 @@
     <script src="js/dashboard.js"></script>
     <script src="js/Chart.roundedBarCharts.js"></script>
     <!-- End custom js for this page-->
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)

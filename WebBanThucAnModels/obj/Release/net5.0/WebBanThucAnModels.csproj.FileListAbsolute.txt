@@ -1,0 +1,12 @@
+D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnModels\bin\Release\net5.0\WebBanThucAnModels.deps.json
+D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnModels\bin\Release\net5.0\WebBanThucAnModels.dll
+D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnModels\bin\Release\net5.0\ref\WebBanThucAnModels.dll
+D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnModels\bin\Release\net5.0\WebBanThucAnModels.pdb
+D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnModels\obj\Release\net5.0\WebBanThucAnModels.csproj.AssemblyReference.cache
+D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnModels\obj\Release\net5.0\WebBanThucAnModels.GeneratedMSBuildEditorConfig.editorconfig
+D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnModels\obj\Release\net5.0\WebBanThucAnModels.AssemblyInfoInputs.cache
+D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnModels\obj\Release\net5.0\WebBanThucAnModels.AssemblyInfo.cs
+D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnModels\obj\Release\net5.0\WebBanThucAnModels.csproj.CoreCompileInputs.cache
+D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnModels\obj\Release\net5.0\WebBanThucAnModels.dll
+D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnModels\obj\Release\net5.0\ref\WebBanThucAnModels.dll
+D:\Myproject\CSharp\NET105\Assignment\WebBanThucAn\WebBanThucAnModels\obj\Release\net5.0\WebBanThucAnModels.pdb

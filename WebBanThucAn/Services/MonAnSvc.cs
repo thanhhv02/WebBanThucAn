@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using WebBanThucAn.Models;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace WebBanThucAn.Services
 {
@@ -64,7 +64,7 @@ namespace WebBanThucAn.Services
         public List<MonAn> GetMonAnAll()
         {
             List<MonAn> monAns = new List<MonAn>();
-            monAns = _context.MonAns.ToList();
+            monAns = _context.MonAns.Include(x=>x.Photos).ToList();
             return monAns;
         }
     }

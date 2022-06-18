@@ -5,8 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebBanThucAnUser.Models
-{
+
     public class Nguoidung
     {
         [Key]
@@ -43,4 +42,3 @@ namespace WebBanThucAnUser.Models
         [NotMapped]
         public string ConfirmPassword { get; set; }
     }
-}
